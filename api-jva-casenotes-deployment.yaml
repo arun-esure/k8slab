@@ -34,6 +34,8 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.podIP
+          - name: ENV
+            value: k8slab 
 
 ---
 
@@ -51,5 +53,21 @@ spec:
     name: http
   selector:
     app: api-jva-casenotes
+    
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: casenotes.api
+spec:
+  rules:
+  - host: casenotes.api
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: api-jva-casenotes-svc
+          servicePort: 80
     
 ---
