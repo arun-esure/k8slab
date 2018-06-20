@@ -13,6 +13,9 @@ spec:
         app: api-jva-casenotes
     spec:
       containers:
+      - envFrom:
+      - configMapRef:
+          name: api-jva-casenotes-env
       - name: api-jva-casenotes
         image: 550964964577.dkr.ecr.eu-west-1.amazonaws.com/k8slab-api-jva-casenotes:latest
         ports:
